@@ -1,166 +1,164 @@
-const weatherForm = document.querySelector(".weatherForm");
-const cityInput = document.querySelector(".cityInput");
-const card = document.querySelector(".card");
+// Selecting necessary DOM elements
+const weatherForm = document.querySelector(".weatherForm"); // Form element
+const cityInput = document.querySelector(".cityInput"); // Input field for city
+const card = document.querySelector(".card"); // Card to display weather information
 
+// Elements related to changing temperature unit
+const choiceContainer = document.querySelector('.choice-container'); // Container for temperature unit choices
+const barBtn = document.querySelector('.bar-btn-js'); // Button to toggle temperature unit choices
+const iconBar = document.querySelector('.icon-js'); // Icon for temperature unit toggle
+const celsiusBtn = document.querySelector('.to-c'); // Button to change temperature unit to Celsius
+const fahrenheitBtn = document.querySelector('.to-f'); // Button to change temperature unit to Fahrenheit
+const kelvinBtn = document.querySelector('.to-k'); // Button to change temperature unit to Kelvin
 
-// elements to change the temprature unit.
-const choiceContainer = document.querySelector('.choice-container');
-const barBtn = document.querySelector('.bar-btn-js');
-const iconBar = document.querySelector('.icon-js');
-const celsiusBtn = document.querySelector('.to-c');
-const fahrenheitBtn = document.querySelector('.to-f');
-const kelvinBtn = document.querySelector('.to-k');
-
+// API key for fetching weather data
 const apiKey = "45355a7242fbd0d62ac57fb9cb26a712";
-let tempratureValue = 0 //variable to store temprature
+// Variable to store temperature value
+let tempratureValue = 0;
+// Variable to track if there's an error
 let hasError = false;
 
+// Event listener for form submission
 weatherForm.addEventListener("submit", async event => {
+    event.preventDefault(); // Prevent default form submission behavior
+    const city = cityInput.value; // Get the city entered by the user
 
-    event.preventDefault();
-    console.log('yess')
-    const city = cityInput.value;
-
-    if(city){
-        try{
-            const weatherData = await getWeatherData(city);
-            displayWeatherInfo(weatherData);
+    if(city) { // If city is provided
+        try {
+            const weatherData = await getWeatherData(city); // Fetch weather data for the provided city
+            displayWeatherInfo(weatherData); // Display weather information
+        } catch(error) {
+            console.error(error); // Log error to console
+            displayError(error); // Display error message
+            hasError = true; // Set error flag to true
         }
-        catch(error){
-            console.error(error);
-            displayError(error);
-            hasError = true;
-
-        }
-    }
-    else{
-        displayError("Please enter a city");
+    } else {
+        displayError("Please enter a city"); // Display error message for missing city
     }
 });
 
-// cityInput.addEventListener('keydown', (e)=>{
-//     console.log(e.key)
-// })
+// Function to fetch weather data from API
+async function getWeatherData(city) {
+    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`; // API URL for fetching weather data
+    const response = await fetch(apiUrl); // Fetch data from API
 
-
-
-async function getWeatherData(city){
-
-    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
-
-    const response = await fetch(apiUrl);
-
-    if(!response.ok){
-        throw new Error("Could not fetch weather data");
+    if(!response.ok) { // If response is not successful
+        throw new Error("Could not fetch weather data or city not found."); // Throw error
     }
 
-    return await response.json();
+    return await response.json(); // Return weather data as JSON
 }
 
-function changeUnitCelsius(temp){
-    return `${(temp - 273.15).toFixed(1)}°<span style="font-size: 4rem;">${'C'}</span>`
+// Functions to convert temperature units
+function changeUnitCelsius(temp) {
+    return `${(temp - 273.15).toFixed(1)}°<span style="font-size: 4rem;">${'C'}</span>`;
 }
 
-function changeUnitFahrenheit(temp){
-    return `${(((temp - 273.15)*(1.8))+32).toFixed(1)}°<span style="font-size: 4rem;">${'F'}</span>`
+function changeUnitFahrenheit(temp) {
+    return `${(((temp - 273.15) * 1.8) + 32).toFixed(1)}°<span style="font-size: 4rem;">${'F'}</span>`;
 }
 
-function changeUnitKelvin(temp){
-    return `${temp}<span style="font-size: 4rem;">&nbsp;${'K'}</span>`
+function changeUnitKelvin(temp) {
+    return `${temp}<span style="font-size: 4rem;">&nbsp;${'K'}</span>`;
 }
 
-function displayWeatherInfo(data){
-
+// Function to display weather information
+function displayWeatherInfo(data) {
+    // Arrays for days and months
     const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const monthsOfYear = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+    // Current day and month
     const today = new Date().getDay();
     const dayName = daysOfWeek[today];
-
-
-    const monthsOfYear = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     const today1 = new Date();
     const monthName = monthsOfYear[today1.getMonth()];
     const dateValue = today1.getDate();
 
+    // Destructuring weather data
+    const { name: city, main: { temp, humidity }, weather: [{ description, id }] } = data;
 
-    const {name: city, 
-           main: {temp, humidity}, 
-           weather: [{description, id}]} = data;
-
+    // Clearing previous card content
     card.textContent = "";
     card.style.display = "flex";
-    tempratureValue =temp;
+    tempratureValue = temp;
 
+    // Creating DOM elements to display weather information
     const cityDisplay = document.createElement("h1");
     const tempDisplay = document.createElement("p");
-    const humidityDisplay = document.createElement("p");
     const descDisplay = document.createElement("p");
     const weatherEmoji = document.createElement("p");
     const time =  document.createElement("p");
     const day = document.createElement('span');
-    const _month = document.createElement('span')
+    const _month = document.createElement('span');
     const _dataContainer = document.createElement('div');
-    const humudity = document.createElement('span')
-    const humidityValue = document.createElement('span')
-    const humidityContainer = document.createElement('div')
-    const humidityIcon = document.createElement('span')
+    const humidityContainer = document.createElement('div');
+    const humidityIcon = document.createElement('span');
+    const humudity = document.createElement('span');
+    const humidityValue = document.createElement('span');
 
+    // Setting content and classes for elements
     humidityIcon.innerHTML = `<i class="fa-solid fa-droplet "></i>`;
-
     day.innerHTML = `${dayName},&nbsp;`;
     _month.innerHTML = `${monthName}&nbsp;${dateValue}`;
-    humudity.innerHTML = `Humidity`
-    humudity.classList.add('humidityName')
-    humidityValue.innerHTML = `${humidity}%`
-    humidityValue.classList.add('percent')
-    time.appendChild(day)
-    time.appendChild(_month)
+    humudity.innerHTML = `Humidity`;
+    humidityValue.innerHTML = `${humidity}%`;
+    time.appendChild(day);
+    time.appendChild(_month);
 
-    humidityContainer.appendChild(humidityIcon)
-    humidityContainer.appendChild(humudity)
-    humidityContainer.appendChild(humidityValue)
+    humidityContainer.appendChild(humidityIcon);
+    humidityContainer.appendChild(humudity);
+    humidityContainer.appendChild(humidityValue);
 
-
-    _dataContainer.appendChild(humidityContainer)
-    _dataContainer.appendChild(descDisplay)
+    _dataContainer.appendChild(humidityContainer);
+    _dataContainer.appendChild(descDisplay);
 
     time.classList.add('time');
-    cityDisplay.textContent = `${city} City`;
+    cityDisplay.textContent = `${city}`;
     tempDisplay.innerHTML = changeUnitCelsius(temp);
-    // humidityDisplay.textContent = `${humidity}%`;
     descDisplay.textContent = description;
-    
 
     cityDisplay.classList.add("cityDisplay");
     tempDisplay.classList.add("tempDisplay");
     tempDisplay.classList.add("temp-js");
-    // humidityDisplay.classList.add("humidityDisplay");
     descDisplay.classList.add("descDisplay");
     weatherEmoji.classList.add("weatherEmoji");
     _dataContainer.classList.add('dataContainer');
-    // _dataContainer.classList.add('data-white');
     humidityContainer.classList.add('humidityContainer');
     time.classList.add('time-display');
-    
 
-    
+    // Appending elements to card
     card.appendChild(weatherEmoji);
-    card.appendChild(time)
+    card.appendChild(time);
     card.appendChild(tempDisplay);
     card.appendChild(cityDisplay);
     card.appendChild(_dataContainer);
-    // card.appendChild(humidityDisplay);
-    // card.appendChild(descDisplay);
     weatherEmoji.innerHTML = getWeatherEmoji(id);
+
+    // Event listeners for temperature unit conversion
+    barBtn.addEventListener('click', () => {
+        choiceContainer.classList.toggle('active');
+        iconBar.classList.toggle('fa-x');
+    });
+
+    celsiusBtn.addEventListener('click', () => {
+        document.querySelector('.temp-js').innerHTML = changeUnitCelsius(tempratureValue);
+        choiceContainer.classList.toggle('active');
+        iconBar.classList.toggle('fa-x');
+    });
+
+    fahrenheitBtn.addEventListener('click', () => {
+        document.querySelector('.temp-js').innerHTML = changeUnitFahrenheit(tempratureValue);
+        choiceContainer.classList.toggle('active');
+        iconBar.classList.toggle('fa-x');
+    });
+
+    kelvinBtn.addEventListener('click', () => {
+        document.querySelector('.temp-js').innerHTML = changeUnitKelvin(tempratureValue);
+        choiceContainer.classList.toggle('active');
+        iconBar.classList.toggle('fa-x');
+    });
 }
-
-displayWeatherInfo({
-    name: 'dubai', 
-    main:{ temp: 350,  humidity: 87},
-    weather: [{ description: 'clear sky', id : 804}]
-});
-
-const body = document.body;
-const dataCon = document.querySelector('.dataContainer')
 function getWeatherEmoji(weatherId){
     switch(true){
         case (weatherId >= 200 && weatherId < 300):
@@ -189,18 +187,18 @@ function getWeatherEmoji(weatherId){
             document.body.classList.add('fog')
             document.body.classList.add('bg-image-style')
             return `<i class="fa-solid fa-smog"></i>`; //mist smoke haze, snad, dust, ash
-        case (weatherId === 800): // clouds
+        case (weatherId === 800): 
             document.body.className = ''
             document.body.classList.add('sky')
             document.body.classList.add('bg-image-style')
-            return `<i class="fa-regular fa-sun" style="color: #FFD43B;"></i>` //☀;
+            return `<i class="fa-regular fa-sun" style="color: #FFD43B;"></i>` //☀ clear sky;
         case (weatherId >= 801 && weatherId < 810):
             document.body.className = ''
             document.body.classList.add('cloud')
             document.body.classList.add('bg-image-style')
-            return `<i class="fa-solid fa-cloud" style="color:white;"></i>`; // unknown
+            return `<i class="fa-solid fa-cloud" style="color:white;"></i>`; // clouds
         default:
-            return "❓";
+            return "❓"; // unknown
     }
 }
 
@@ -215,41 +213,7 @@ function displayError(message){
     card.appendChild(errorDisplay);
 }
 
-// const choiceContainer = document.querySelector('.choice-container');
-// const barBtn = document.querySelector('.bar-btn-js');
-// const iconBar = document.querySelector('.icon-js');
-// const celsiusBtn = document.querySelector('.to-c');
-// const fahrenheitBtn = document.querySelector('.to-f');
-// const kelvinBtn = document.querySelector('.to-k');
-const tempDispalyElement = document.querySelector('.temp-js');
 
-
-barMenu()
-function barMenu(){
-    if(hasError) return
-    barBtn.addEventListener('click', ()=>{
-        choiceContainer.classList.toggle('active')
-        iconBar.classList.toggle('fa-x')
-    })
-    
-    celsiusBtn.addEventListener('click', ()=>{
-        tempDispalyElement.innerHTML = changeUnitCelsius(tempratureValue)
-        choiceContainer.classList.toggle('active')
-        iconBar.classList.toggle('fa-x')
-    })
-    
-    fahrenheitBtn.addEventListener('click', ()=>{
-        tempDispalyElement.innerHTML = changeUnitFahrenheit(tempratureValue)
-        choiceContainer.classList.toggle('active')
-        iconBar.classList.toggle('fa-x')
-    })
-    
-    kelvinBtn.addEventListener('click', ()=>{
-        tempDispalyElement.innerHTML = changeUnitKelvin(tempratureValue)
-        choiceContainer.classList.toggle('active')
-        iconBar.classList.toggle('fa-x')
-    })
-}
 
 
 

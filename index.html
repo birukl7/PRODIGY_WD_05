@@ -3,33 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Weather App</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/ee4b6626a1.js" crossorigin="anonymous"></script>
 </head>
 <body class="normal-view bg-image-style">
-
     <form class="weatherForm">
         <div class="input-container">
-            <div class="input-search-container" style="position: relative;">
-                <button style="left: 20px; z-index: 10;  position: absolute; background-color: transparent; border:none; cursor: pointer;" type="submit"><i class="fa-solid fa-magnifying-glass" style="font-size: 13px;"></i></button>
-                <input type="text" class="cityInput" placeholder="Enter city" style="padding-left: 35px;"> 
+            <div class="input-search-container">
+                <!-- Button for submitting the form -->
+                <button type="submit"><i class="fa-solid fa-magnifying-glass" style="font-size: 13px;"></i></button>
+                <!-- Input field for city -->
+                <input type="text" class="cityInput" placeholder="Enter city or country">
+                <!-- Button for toggling temperature unit choices -->
                 <span class="bar-btn bar-btn-js"><i class="fa-solid fa-bars icon-js"></i></span>
             </div>
-        
-
+            <!-- Container for temperature unit choices -->
             <div class="choice-container">
                 <span class="to-c">Celsius</span><span class="to-f">Fahrenheit</span><span class="to-k">Kelvin</span>
             </div>
-            <!-- <button type="submit">Get Weather</button> -->
         </div>
     </form>
-        
-
-
-    <div class="card" style="display: none">
-    </div>
-    <!-- 45355a7242fbd0d62ac57fb9cb26a712 -->
+    <!-- Card to display weather information -->
+    <div class="card" style="display: none"></div>
     <script src="script.js"></script>
 </body>
 </html>

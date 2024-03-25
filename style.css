@@ -8,7 +8,6 @@ body{
   height: 100vh;
 }
 .weatherForm{
-  /* display: flex; */
   align-items: center;
   margin: 10px;
 }
@@ -26,25 +25,7 @@ body{
 .cityInput:focus{
   outline: dodgerblue;
 }
-/* button[type="submit"]{
-  padding: 10px 20px;
-  margin: 0 20px;
-  margin-bottom: 30px;
-  font-weight: 400;
-  font-size: 1rem;
-  background-color: black;
-  color: white;
-  border: none;
-  border-radius: 9009px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-button[type="submit"]:hover{
-  outline: 1px solid black;
-  background-color: white;
-  color: black;
-  margin: auto auto;
-} */
+
 .card{
   padding: 50px;
   border-radius: 10px;
@@ -111,10 +92,7 @@ p{
   font-weight: bold;
   color: hsla(0, 0%, 0%, 0.75);
 }
- /* body{
- background-color: black;
- color: white;
- } */
+
  .dataContainer{
   display: flex;
   align-items: center;
@@ -215,7 +193,7 @@ body{
 }
 
 .sky{
-  background-image: url(images/cate-bligh-clear-sky.jpg);
+  background-image: url(images/cate-bligh-clear-sky-1.jpg);
   color: white;
 }
 
@@ -262,9 +240,6 @@ body{
   color: rgb(65, 61, 61);
 }
 
-/* .snow input{
-  border-color: rgb(71, 70, 70);
-} */
 
 .drizzle input, .rain input, .sky input, .cloud input, .normal-view input{
  background-color: white;
@@ -300,13 +275,21 @@ body{
   border-color: white;
 }
 
+.input-container .input-search-container {
+  position: relative;
+}
 
+.input-container .input-search-container button {
+  left: 20px;
+  z-index: 10;
+  position: absolute;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
 
+.input-container .input-search-container input {
+  padding-left: 35px;
+}
 
-
- @media  screen and (max-width: 497px) {
-    /* .weatherForm{
-      flex-direction: column;
-    } */
- }
 
