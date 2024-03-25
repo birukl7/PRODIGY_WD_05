@@ -124,7 +124,7 @@ p{
  }
 
  .bar-btn{
- 
+  cursor: pointer;
   border:none;
  }
 
@@ -193,7 +193,7 @@ body{
 }
 
 .sky{
-  background-image: url(images/cate-bligh-clear-sky-1.jpg);
+  background-image: url('images/cate-bligh-clear-sky-1.jpg');
   color: white;
 }
 

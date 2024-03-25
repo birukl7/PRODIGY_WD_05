@@ -158,6 +158,7 @@ function displayWeatherInfo(data) {
         choiceContainer.classList.toggle('active');
         iconBar.classList.toggle('fa-x');
     });
+    
 }
 function getWeatherEmoji(weatherId){
     switch(true){
@@ -187,18 +188,18 @@ function getWeatherEmoji(weatherId){
             document.body.classList.add('fog')
             document.body.classList.add('bg-image-style')
             return `<i class="fa-solid fa-smog"></i>`; //mist smoke haze, snad, dust, ash
-        case (weatherId === 800): 
+        case (weatherId == 800): // clouds
             document.body.className = ''
             document.body.classList.add('sky')
             document.body.classList.add('bg-image-style')
-            return `<i class="fa-regular fa-sun" style="color: #FFD43B;"></i>` //☀ clear sky;
+            return `<i class="fa-regular fa-sun" style="color: #FFD43B;"></i>` //☀;
         case (weatherId >= 801 && weatherId < 810):
             document.body.className = ''
             document.body.classList.add('cloud')
             document.body.classList.add('bg-image-style')
-            return `<i class="fa-solid fa-cloud" style="color:white;"></i>`; // clouds
+            return `<i class="fa-solid fa-cloud" style="color:white;"></i>`; // unknown
         default:
-            return "❓"; // unknown
+            return "❓";
     }
 }
 
@@ -213,7 +214,42 @@ function displayError(message){
     card.appendChild(errorDisplay);
 }
 
+const tempDispalyElement = document.querySelector('.temp-js');
+// const choiceContainer = document.querySelector('.choice-container');
+// const barBtn = document.querySelector('.bar-btn-js');
+// const iconBar = document.querySelector('.icon-js');
+// const celsiusBtn = document.querySelector('.to-c');
+// const fahrenheitBtn = document.querySelector('.to-f');
+// const kelvinBtn = document.querySelector('.to-k');
 
+
+
+
+// function barMenu(){
+//     if(hasError) return
+//     barBtn.addEventListener('click', ()=>{
+//         choiceContainer.classList.toggle('active')
+//         iconBar.classList.toggle('fa-x')
+//     })
+    
+//     celsiusBtn.addEventListener('click', ()=>{
+//         tempDispalyElement.innerHTML = changeUnitCelsius(tempratureValue)
+//         choiceContainer.classList.toggle('active')
+//         iconBar.classList.toggle('fa-x')
+//     })
+    
+//     fahrenheitBtn.addEventListener('click', ()=>{
+//         tempDispalyElement.innerHTML = changeUnitFahrenheit(tempratureValue)
+//         choiceContainer.classList.toggle('active')
+//         iconBar.classList.toggle('fa-x')
+//     })
+    
+//     kelvinBtn.addEventListener('click', ()=>{
+//         tempDispalyElement.innerHTML = changeUnitKelvin(tempratureValue)
+//         choiceContainer.classList.toggle('active')
+//         iconBar.classList.toggle('fa-x')
+//     })
+// }
 
 
 
