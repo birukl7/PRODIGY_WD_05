@@ -1,0 +1,312 @@
+body{
+  font-family: Arial, sans-serif;
+  background-color: hsl(0, 0%, 95%);
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+}
+.weatherForm{
+  /* display: flex; */
+  align-items: center;
+  margin: 10px;
+}
+.cityInput{
+  padding: 10px;
+  font-size: 1rem;
+  font-weight: 300;
+  border: 2px solid hsla(0, 0%, 20%, 0.3);
+  border-radius: 10px;
+  margin: 10px;
+  width: 320px;
+  background-color: transparent;
+}
+
+.cityInput:focus{
+  outline: dodgerblue;
+}
+/* button[type="submit"]{
+  padding: 10px 20px;
+  margin: 0 20px;
+  margin-bottom: 30px;
+  font-weight: 400;
+  font-size: 1rem;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 9009px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+button[type="submit"]:hover{
+  outline: 1px solid black;
+  background-color: white;
+  color: black;
+  margin: auto auto;
+} */
+.card{
+  padding: 50px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px hsla(0, 0%, 0%, 0.5);
+  min-width: 300px;
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  backdrop-filter: blur(200px);
+}
+
+.data-white{
+  color: white;
+}
+
+.data-white div{
+  border-color: white;
+}
+
+h1{
+  font-size: 0.3rem;
+  margin-top: 0;
+  text-transform: capitalize;
+}
+p{
+  font-size: 1.5rem;
+  margin: 5px 0;
+}
+.tempDisplay{
+  padding: 40px 0;
+  font-size: 6.5rem;
+  padding-bottom: 30px;
+  color: hsla(0, 0%, 0%, 0.8);
+  margin-bottom: 25px;
+}
+
+.time{
+  font-size: 1.3rem;
+  padding: 20px 0;
+}
+
+.cityDisplay{
+  font-size: 1.6rem;
+  font-weight: lighter;
+  color: hsla(0, 0%, 0%, 0.8);
+  margin-bottom: 25px;
+  text-transform: capitalize;
+}
+.humidityDisplay{
+  font-weight: bold;
+  margin-bottom: 25px;
+}
+.descDisplay{
+  font-weight: lighter;
+  font-size: 1.3rem;
+}
+.weatherEmoji{
+  margin: 0;
+  font-size: 7.5rem;
+}
+.errorDisplay{
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: hsla(0, 0%, 0%, 0.75);
+}
+ /* body{
+ background-color: black;
+ color: white;
+ } */
+ .dataContainer{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 15px 0 0 0;
+ }
+
+ .humidityContainer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 5px;
+  padding: 10px;
+  width: 45%;
+  border-right: 2px solid black;
+ }
+
+ .humidityName {
+    padding: 5px 0;
+ }
+
+ .percent{
+  font-weight: bold;
+ }
+
+ .input-container i{
+    font-size: 1.5rem;
+ }
+
+ .bar-btn{
+ 
+  border:none;
+ }
+
+ .input-search-container{
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+ }
+
+.choice-container.active{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px 0;
+  padding-top: 2px;
+  height: auto;
+  overflow: visible;
+  transition: height 4s ease;
+}
+
+.choice-container{
+  height: 0;
+  overflow: hidden;
+  transition: height 4s ease;
+}
+
+.choice-container span{
+  width: 120px;
+  padding: 10px 20px;
+  margin: 5px 0;
+  font-size: 0.8rem;
+  border-radius: 10px;
+  border: 1px solid;
+  cursor: pointer;
+}
+
+body{
+  padding-bottom: 100px;
+}
+
+.bg-image-style{
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.thunder{
+  background-image: url(images/evgen-slavin-thunderstorm.jpg);
+}
+
+.drizzle{
+  background-image: url(images/simon-spieske-drizzle.jpg);
+  color: white;
+}
+
+.snow{
+  background-image: url(images/stanley-dai-snow.jpg);
+}
+
+.rain {
+  background-image: url('images/mark-olsen-rain.jpg');
+  color: white;
+}
+
+.fog{
+  background-image: url('images/katie-moum-fog.jpg');
+}
+
+.sky{
+  background-image: url(images/cate-bligh-clear-sky.jpg);
+  color: white;
+}
+
+.cloud{
+  background-image: url(images/engin-akyurt-cloudy.jpg);
+  color: white;
+}
+
+.normal-view{
+  background-image: url(images/neda-astani-normal-page.jpg);
+  padding: 0;
+  margin: 0;
+}
+
+.cloud .time-display{
+  color: white;
+}
+
+.cloud .humidityContainer{
+  border-color: white;
+}
+
+.drizzle .card{
+  backdrop-filter: blur(900px);
+}
+
+.fog .card{
+  backdrop-filter: blur(700px);
+}
+
+.snow .card{
+  backdrop-filter: blur(100px);
+}
+
+.cloud .card{
+  backdrop-filter: blur(1000px);
+}
+
+.drizzle .bar-btn, .sky .bar-btn, .cloud .bar-btn, .normal-view .bar-btn{
+  color: white;
+}
+
+.snow input::placeholder{
+  color: rgb(65, 61, 61);
+}
+
+/* .snow input{
+  border-color: rgb(71, 70, 70);
+} */
+
+.drizzle input, .rain input, .sky input, .cloud input, .normal-view input{
+ background-color: white;
+}
+
+.drizzle input::placeholder{
+  color: black;
+}
+
+.drizzle .choice-container span, .rain .choice-container span, .sky .choice-container span, .cloud .choice-container span{
+  background-color: white;
+  color: black;
+}
+.rain .choice-container span{
+  background-color: rgba(255, 255, 255, 0.87);
+}
+
+
+
+.rain .cityDisplay, .drizzle .cityDisplay, .sky .cityDisplay, .cloud .cityDisplay{
+  color: white;
+}
+
+.rain .tempDisplay, .drizzle .tempDisplay, .sky .tempDisplay, .cloud .tempDisplay{
+  color: white;
+}
+
+.rain .bar-btn{
+  color: white; 
+}
+
+.rain  .humidityContainer, .drizzle .humidityContainer, .sky .humidityContainer, .cloud .sky .humidityContainer{
+  border-color: white;
+}
+
+
+
+
+
+ @media  screen and (max-width: 497px) {
+    /* .weatherForm{
+      flex-direction: column;
+    } */
+ }
+
