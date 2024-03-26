@@ -27,14 +27,19 @@ weatherForm.addEventListener("submit", async event => {
         try {
             const weatherData = await getWeatherData(city); // Fetch weather data for the provided city
             displayWeatherInfo(weatherData); // Display weather information
+            hasError = false;
+            // console.log(hasError)
+            // setTimeout(barMenu, 500)
         } catch(error) {
             console.error(error); // Log error to console
             displayError(error); // Display error message
             hasError = true; // Set error flag to true
+            console.log(hasError)
         }
     } else {
         displayError("Please enter a city"); // Display error message for missing city
     }
+   
 });
 
 // Function to fetch weather data from API
@@ -134,30 +139,6 @@ function displayWeatherInfo(data) {
     card.appendChild(cityDisplay);
     card.appendChild(_dataContainer);
     weatherEmoji.innerHTML = getWeatherEmoji(id);
-
-    // Event listeners for temperature unit conversion
-    barBtn.addEventListener('click', () => {
-        choiceContainer.classList.toggle('active');
-        iconBar.classList.toggle('fa-x');
-    });
-
-    celsiusBtn.addEventListener('click', () => {
-        document.querySelector('.temp-js').innerHTML = changeUnitCelsius(tempratureValue);
-        choiceContainer.classList.toggle('active');
-        iconBar.classList.toggle('fa-x');
-    });
-
-    fahrenheitBtn.addEventListener('click', () => {
-        document.querySelector('.temp-js').innerHTML = changeUnitFahrenheit(tempratureValue);
-        choiceContainer.classList.toggle('active');
-        iconBar.classList.toggle('fa-x');
-    });
-
-    kelvinBtn.addEventListener('click', () => {
-        document.querySelector('.temp-js').innerHTML = changeUnitKelvin(tempratureValue);
-        choiceContainer.classList.toggle('active');
-        iconBar.classList.toggle('fa-x');
-    });
     
 }
 function getWeatherEmoji(weatherId){
@@ -166,7 +147,7 @@ function getWeatherEmoji(weatherId){
             document.body.className = ''
             document.body.classList.add('thunder')
             document.body.classList.add('bg-image-style')
-          // document.querySelector('.dataContainer').classList.add('data-white');
+         
             return `<i class="fa-solid fa-cloud-bolt" style=" color: #546061"></i>`; //thunderstorm
         case (weatherId >= 300 && weatherId < 400):
             document.body.className = ''
@@ -188,7 +169,7 @@ function getWeatherEmoji(weatherId){
             document.body.classList.add('fog')
             document.body.classList.add('bg-image-style')
             return `<i class="fa-solid fa-smog"></i>`; //mist smoke haze, snad, dust, ash
-        case (weatherId == 800): // clouds
+        case (weatherId == 800): //clear sky
             document.body.className = ''
             document.body.classList.add('sky')
             document.body.classList.add('bg-image-style')
@@ -197,7 +178,7 @@ function getWeatherEmoji(weatherId){
             document.body.className = ''
             document.body.classList.add('cloud')
             document.body.classList.add('bg-image-style')
-            return `<i class="fa-solid fa-cloud" style="color:white;"></i>`; // unknown
+            return `<i class="fa-solid fa-cloud" style="color:white;"></i>`; // clouds
         default:
             return "❓";
     }
@@ -215,41 +196,35 @@ function displayError(message){
 }
 
 const tempDispalyElement = document.querySelector('.temp-js');
-// const choiceContainer = document.querySelector('.choice-container');
-// const barBtn = document.querySelector('.bar-btn-js');
-// const iconBar = document.querySelector('.icon-js');
-// const celsiusBtn = document.querySelector('.to-c');
-// const fahrenheitBtn = document.querySelector('.to-f');
-// const kelvinBtn = document.querySelector('.to-k');
 
+barMenu()
 
-
-
-// function barMenu(){
-//     if(hasError) return
-//     barBtn.addEventListener('click', ()=>{
-//         choiceContainer.classList.toggle('active')
-//         iconBar.classList.toggle('fa-x')
-//     })
+function barMenu(){
+    if(hasError) return
+    barBtn.addEventListener('click', ()=>{
+        console.log(barBtn)
+        choiceContainer.classList.toggle('active')
+        iconBar.classList.toggle('fa-x')
+    })
     
-//     celsiusBtn.addEventListener('click', ()=>{
-//         tempDispalyElement.innerHTML = changeUnitCelsius(tempratureValue)
-//         choiceContainer.classList.toggle('active')
-//         iconBar.classList.toggle('fa-x')
-//     })
+    celsiusBtn.addEventListener('click', ()=>{
+        document.querySelector('.temp-js').innerHTML = changeUnitCelsius(tempratureValue)
+        choiceContainer.classList.toggle('active')
+        iconBar.classList.toggle('fa-x')
+    })
     
-//     fahrenheitBtn.addEventListener('click', ()=>{
-//         tempDispalyElement.innerHTML = changeUnitFahrenheit(tempratureValue)
-//         choiceContainer.classList.toggle('active')
-//         iconBar.classList.toggle('fa-x')
-//     })
+    fahrenheitBtn.addEventListener('click', ()=>{
+        document.querySelector('.temp-js').innerHTML = changeUnitFahrenheit(tempratureValue)
+        choiceContainer.classList.toggle('active')
+        iconBar.classList.toggle('fa-x')
+    })
     
-//     kelvinBtn.addEventListener('click', ()=>{
-//         tempDispalyElement.innerHTML = changeUnitKelvin(tempratureValue)
-//         choiceContainer.classList.toggle('active')
-//         iconBar.classList.toggle('fa-x')
-//     })
-// }
+    kelvinBtn.addEventListener('click', ()=>{
+        document.querySelector('.temp-js').innerHTML = changeUnitKelvin(tempratureValue)
+        choiceContainer.classList.toggle('active')
+        iconBar.classList.toggle('fa-x')
+    })
+}
 
 
 

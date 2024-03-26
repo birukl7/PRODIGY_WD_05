@@ -22,6 +22,11 @@ body{
   background-color: transparent;
 }
 
+@media  screen and (max-width: 400px) {
+  .cityInput{
+    width: 250px;
+  }
+}
 .cityInput:focus{
   outline: dodgerblue;
 }
@@ -249,7 +254,7 @@ body{
   color: black;
 }
 
-.drizzle .choice-container span, .rain .choice-container span, .sky .choice-container span, .cloud .choice-container span{
+.drizzle .choice-container span, .rain .choice-container span, .sky .choice-container span, .cloud .choice-container span, .normal-view .choice-container span{
   background-color: white;
   color: black;
 }
