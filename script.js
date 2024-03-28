@@ -28,8 +28,6 @@ weatherForm.addEventListener("submit", async event => {
             const weatherData = await getWeatherData(city); // Fetch weather data for the provided city
             displayWeatherInfo(weatherData); // Display weather information
             hasError = false;
-            // console.log(hasError)
-            // setTimeout(barMenu, 500)
         } catch(error) {
             console.error(error); // Log error to console
             displayError(error); // Display error message
@@ -127,6 +125,7 @@ function displayWeatherInfo(data) {
     tempDisplay.classList.add("tempDisplay");
     tempDisplay.classList.add("temp-js");
     descDisplay.classList.add("descDisplay");
+    descDisplay.classList.add("descDisplay-css");
     weatherEmoji.classList.add("weatherEmoji");
     _dataContainer.classList.add('dataContainer');
     humidityContainer.classList.add('humidityContainer');

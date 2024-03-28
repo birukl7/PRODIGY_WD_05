@@ -87,6 +87,8 @@ p{
 .descDisplay{
   font-weight: lighter;
   font-size: 1.3rem;
+  text-align: center;
+  width: 150px;
 }
 .weatherEmoji{
   margin: 0;
@@ -296,5 +298,7 @@ body{
 .input-container .input-search-container input {
   padding-left: 35px;
 }
+
+
 
 
