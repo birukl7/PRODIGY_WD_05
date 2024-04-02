@@ -22,14 +22,6 @@ body{
   background-color: transparent;
 }
 
-@media  screen and (max-width: 400px) {
-  .cityInput{
-    width: 250px;
-  }
-}
-.cityInput:focus{
-  outline: dodgerblue;
-}
 
 .card{
   padding: 50px;
@@ -299,6 +291,13 @@ body{
   padding-left: 35px;
 }
 
-
+@media  screen and (max-width: 400px) {
+  .cityInput{
+    width: 250px;
+  }
+}
+.cityInput:focus{
+  outline: dodgerblue;
+}
 
 
